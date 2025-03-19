@@ -19,13 +19,10 @@ locals {
   alpine_3_iso_checksum = "file:https://dl-cdn.alpinelinux.org/alpine/v${local.alpine_3_ver}/releases/x86_64/alpine-virt-3.21.3-x86_64.iso.sha256"
 
   alpine_3_boot_command = [
+    "<wait30>",
     "root<enter>",
-    "setup-alpine -q<enter><enter><wait>",
-    "passwd<enter><wait>",
-    "${var.ssh_password}<enter><wait>",
-    "${var.ssh_password}<enter><wait>",
-    "apk add python3<enter><wait10>",
-    "setup-sshd<enter><wait><enter><wait>yes<enter><wait><enter><wait>",
+    "setup-alpine -e -f http://{{ .HTTPIP }}:{{ .HTTPPort }}/alpine-3.answers<enter><wait30>",
+    "reboot<enter>"
   ]
 
 }
