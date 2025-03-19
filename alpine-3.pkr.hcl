@@ -21,8 +21,13 @@ locals {
   alpine_3_boot_command = [
     "<wait30>",
     "root<enter>",
+    "echo '${var.ssh_username}:${var.ssh_password}' | chpasswd<enter>",
     "setup-alpine -e -f http://{{ .HTTPIP }}:{{ .HTTPPort }}/alpine-3.answers<enter><wait30>",
-    "reboot<enter>"
+    "mount /dev/vda2 /mnt<enter>",
+    "echo PermitRootLogin yes >> /mnt/etc/ssh/sshd_config<enter><wait>",
+    "chroot /mnt apk add cloud-init<enter><wait10>",
+    "umount /mnt<enter>",
+    "reboot<enter><wait30>",
   ]
 
 }

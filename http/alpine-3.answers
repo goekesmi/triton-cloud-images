@@ -9,7 +9,7 @@ iface eth0 inet dhcp
 DNSOPTS="-n 8.8.8.8"
 TIMEZONEOPTS="-z UTC"
 PROXYOPTS="none"
-APKREPOSOPTS="-1"
+APKREPOSOPTS="-c -1"
 SSHDOPTS="-c openssh"
 NTPOPTS="-c openntpd"
 USEROPTS="no"
