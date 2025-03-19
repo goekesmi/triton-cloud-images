@@ -1,12 +1,17 @@
 {
   "almalinux-8": {
     "os": "linux",
-    "desc": "AlmaLinux 8 64-bit image with just essential packages installed. Built to run on bhyve or KVM virtual machines.",
+    "desc": "almalinux 8 64-bit image with just essential packages installed. built to run on bhyve or kvm virtual machines.",
     "homepage": "https://docs.tritondatacenter.com/public-cloud/instances/virtual-machines/images/linux"
   },
   "almalinux-9": {
     "os": "linux",
     "desc": "AlmaLinux 9 64-bit image with just essential packages installed. Built to run on bhyve or KVM virtual machines.",
+    "homepage": "https://docs.tritondatacenter.com/public-cloud/instances/virtual-machines/images/linux"
+  },
+  "alpine-3": {
+    "os": "linux",
+    "desc": "Alpine Linux",
     "homepage": "https://docs.tritondatacenter.com/public-cloud/instances/virtual-machines/images/linux"
   },
   "debian-11": {
