@@ -211,4 +211,4 @@
     cmd: sed -i'' '/{{ ansible_hostname }}/d' /etc/hosts
 
 - name: Run fstrim
-  shell: /usr/sbin/fstrim -a
+  shell: /usr/bin/env fstrim -a

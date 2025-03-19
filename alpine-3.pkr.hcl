@@ -19,15 +19,15 @@ locals {
   alpine_3_iso_checksum = "file:https://dl-cdn.alpinelinux.org/alpine/v${local.alpine_3_ver}/releases/x86_64/alpine-virt-3.21.3-x86_64.iso.sha256"
 
   alpine_3_boot_command = [
-    "<wait30>",
+    "<wait5>",
     "root<enter>",
     "echo '${var.ssh_username}:${var.ssh_password}' | chpasswd<enter>",
     "setup-alpine -e -f http://{{ .HTTPIP }}:{{ .HTTPPort }}/alpine-3.answers<enter><wait30>",
     "mount /dev/vda2 /mnt<enter>",
     "echo PermitRootLogin yes >> /mnt/etc/ssh/sshd_config<enter><wait>",
-    "chroot /mnt apk add cloud-init<enter><wait10>",
+    "chroot /mnt apk add cloud-init fstrim<enter><wait10>",
     "umount /mnt<enter>",
-    "reboot<enter><wait30>",
+    "reboot<enter>",
   ]
 
 }
@@ -44,7 +44,7 @@ source "bhyve" "alpine-3-x86_64" {
   iso_checksum       = local.alpine_3_iso_checksum
   iso_url            = local.alpine_3_iso_url
   memory             = var.memory
-  shutdown_command   = var.root_shutdown_command
+  shutdown_command   = "/sbin/poweroff"
   ssh_password       = var.ssh_password
   ssh_timeout        = var.ssh_timeout
   ssh_username       = var.ssh_username

@@ -1,0 +1,34 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+# Copyright 2023 MNX Cloud, Inc.
+
+---
+- name: Define Triton Guest systemd service
+  copy:
+    src: lib/systemd/system/triton-guest.service
+    dest: /lib/systemd/system/triton-guest.service
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Enable Triton Guest systemd service
+  file:
+    src: /lib/systemd/system/triton-guest.service
+    dest: "{{ item }}/triton-guest.service"
+    owner: root
+    group: root
+    state: link
+    force: true
+  loop:
+    - /etc/systemd/system
+    - /etc/systemd/system/multi-user.target.wants
+
+- name: fstrim cron job
+  copy:
+    src: fstrim.cron.sh
+    dest: /etc/cron.daily/fstrim
+    owner: root
+    group: root
+    mode: 0755

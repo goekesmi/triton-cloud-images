@@ -15,5 +15,9 @@
       - "{{ ansible_distribution }}.yml"
       - "{{ ansible_os_family }}.yml"
 
+- name: Running tasks relevant to systemd
+  when: ansible_distribution == "Debian" or ansible_distribution == "Redhat" or ansible_distribution == "Ubuntu"
+  include_tasks: systemd.yml
+
 - name: Running common tasks for any distribution any version - common.yml
   include_tasks: common.yml

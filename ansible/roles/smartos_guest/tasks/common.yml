@@ -47,26 +47,6 @@
     state: link
     force: true
 
-- name: Define Triton Guest systemd service
-  copy:
-    src: lib/systemd/system/triton-guest.service
-    dest: /lib/systemd/system/triton-guest.service
-    owner: root
-    group: root
-    mode: 0644
-
-- name: Enable Triton Guest systemd service
-  file:
-    src: /lib/systemd/system/triton-guest.service
-    dest: "{{ item }}/triton-guest.service"
-    owner: root
-    group: root
-    state: link
-    force: true
-  loop:
-    - /etc/systemd/system
-    - /etc/systemd/system/multi-user.target.wants
-
 - name: setup motd
   template:
     src: motd.j2
@@ -94,10 +74,3 @@
     state: link
     force: true
 
-- name: fstrim cron job
-  copy:
-    src: fstrim.cron.sh
-    dest: /etc/cron.daily/fstrim
-    owner: root
-    group: root
-    mode: 0755
