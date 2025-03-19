@@ -24,8 +24,8 @@ locals {
     "passwd<enter><wait>",
     "${var.ssh_password}<enter><wait>",
     "${var.ssh_password}<enter><wait>",
+    "apk add python3<enter><wait10>",
     "setup-sshd<enter><wait><enter><wait>yes<enter><wait><enter><wait>",
-    "apk add python3<enter><wait><wait><wait>",
   ]
 
 }
