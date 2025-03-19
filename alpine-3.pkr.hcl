@@ -1,5 +1,5 @@
 /*
- * Debian 12 Packer template for building Triton DataCenter/SmartOS images
+ * Alpine 3 Packer template for building Triton DataCenter/SmartOS images
  */
 
 /*
@@ -10,6 +10,7 @@
 
 /*
  * Copyright 2025 MNX Cloud, Inc.
+ * Copyright 2025 Jeff Goeke-Smith 
  */
 
 locals {
@@ -19,11 +20,12 @@ locals {
 
   alpine_3_boot_command = [
     "root<enter>",
-    "setup-alpine -q<enter><enter>",
+    "setup-alpine -q<enter><enter><wait>",
     "passwd<enter><wait>",
     "${var.ssh_password}<enter><wait>",
     "${var.ssh_password}<enter><wait>",
-    "setup-sshd<enter><enter>yes<enter><enter>"
+    "setup-sshd<enter><wait><enter><wait>yes<enter><wait><enter><wait>",
+    "apk add python3<enter><wait><wait><wait>",
   ]
 
 }
