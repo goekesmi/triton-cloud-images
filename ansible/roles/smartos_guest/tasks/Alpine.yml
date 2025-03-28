@@ -6,6 +6,9 @@
 
 ---
 
+- name: enable cloud-init
+  shell: setup-cloud-init
+
 - name: fstrim cron job
   copy:
     src: fstrim.cron.sh
