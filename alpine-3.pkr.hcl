@@ -25,7 +25,7 @@ locals {
     "setup-alpine -e -f http://{{ .HTTPIP }}:{{ .HTTPPort }}/alpine-3.answers<enter><wait30>",
     "mount /dev/vda2 /mnt<enter>",
     "echo PermitRootLogin yes >> /mnt/etc/ssh/sshd_config<enter><wait>",
-    "chroot /mnt apk add cloud-init fstrim<enter><wait10>",
+    "chroot /mnt apk add cloud-init fstrim py3-pyserial e2fsprogs-extra<enter><wait10>",
     "umount /mnt<enter>",
     "reboot<enter>",
   ]
