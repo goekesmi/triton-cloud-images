@@ -16,3 +16,22 @@
     owner: root
     group: root
     mode: 0755
+
+
+- name: Triton sdcvmtools mdata-client
+  copy:
+    src: "{{ item }}"
+    dest: /usr/sbin/
+    owner: root
+    group: root
+    mode: 0755
+  with_fileglob:
+    - "alpine-3/usr/sbin/mdata-*"
+
+- name: Disable getty on ttyS1-3
+  copy:
+    src: alpine-3/etc/inittab 
+    dest: /etc/ 
+    owner: root
+    group: root
+    mode: 0755

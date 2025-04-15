@@ -21,3 +21,8 @@
 
 - name: Running common tasks for any distribution any version - common.yml
   include_tasks: common.yml
+
+- name: Running tasks relevant to Alpine
+  when: ansible_distribution == "Alpine"
+  include_tasks: Alpine.yml
+
